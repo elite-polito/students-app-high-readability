@@ -6,8 +6,13 @@ type DbTester = {
   questions: string
 }
 
+type QuestionRef = {
+  id: number;
+  font_id: number;
+}
+
 type Tester = Omit<DbTester, 'questions'> & {
-  questions: number[]
+  questions: QuestionRef[]
 }
 
 export const getTester = async (id: number) => {

@@ -11,6 +11,7 @@ const responseValidation = [
   check('question_type').isString().isIn(['read', 'read_check_1', 'read_check_2', 'read_check_3', 'pick']),
   check('is_correct').isBoolean(),
   check('time_ms').isNumeric(),
+  check('font_id').isNumeric()
 ];
 
 type Request = {
@@ -36,11 +37,11 @@ router.post('', responseValidation, async (req: Request, res: any) => {
     let pickNext = false;
     for (const question of tester.questions) {
       if (pickNext) {
-        nextQuestion = question;
+        nextQuestion = question.id;
         break;
       }
 
-      if (question === tester.next_question) {
+      if (question.id === tester.next_question) {
         pickNext = true;
       }
     }
