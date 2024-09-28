@@ -2,17 +2,18 @@ import { getDb } from '../helpers/db.helpers.js';
 
 type DbTester = {
   id: number;
-  next_question: number;
-  questions: string
+  nextTask: number;
+  tasks: string
 }
 
-type QuestionRef = {
-  id: number;
-  font_id: number;
+export type TaskRef = {
+  fontIndex: number;
+  taskType:  'reading' | 'selection';
+  contentIndex: number;
 }
 
-type Tester = Omit<DbTester, 'questions'> & {
-  questions: QuestionRef[]
+type Tester = Omit<DbTester, 'tasks'> & {
+  tasks: TaskRef[]
 }
 
 export const getTester = async (id: number) => {
@@ -25,20 +26,35 @@ export const getTester = async (id: number) => {
 
       resolve({
         ...row,
-        questions: row.questions ? JSON.parse(row.questions) : []
+        tasks: row.tasks ? JSON.parse(row.tasks) : []
       });
     });
   });
 }
 
-export const updateNextQuestion = async (id: number, nextQuestion: number|null) => {
+export const updateNextTask = async (id: number, nextTask: number|null) => {
   const db = getDb();
 
   return new Promise<void>(function(resolve, reject) {
-    db.run('UPDATE testers SET next_question=? WHERE id=?', [nextQuestion, id], function(err) {
+    db.run('UPDATE testers SET nextTask=? WHERE id=?', [nextTask, id], function(err) {
       if (err) reject(err);
 
       resolve();
+    });
+  });
+}
+
+export const addTester = async (tester: Omit<Tester, 'id'>) => {
+  const db = getDb();
+
+  return new Promise<number>(function(resolve, reject) {
+    db.run('INSERT INTO testers (nextTask, tasks) VALUES (?, ?)', [
+      tester.nextTask,
+      JSON.stringify(tester.tasks),
+    ], function(err) {
+      if (err) reject(err);
+
+      resolve(this.lastID);
     });
   });
 }

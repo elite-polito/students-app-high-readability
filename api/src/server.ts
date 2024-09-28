@@ -1,4 +1,4 @@
-import './preconditions'
+import './preconditions.js'
 
 import cors from 'cors';
 import express from 'express';
@@ -9,6 +9,7 @@ import testerRoutes from "./routes/tester.routes.js";
 import * as Sentry from "@sentry/node";
 import { isMyApp } from './middlewares/auth.middlewares.js';
 import responseRoutes from './routes/response.routes.js';
+import initializationRoutes from './routes/initialization.routes.js';
 
 const app = express();
 const port = process.env.PORT;
@@ -34,6 +35,7 @@ app.use(isMyApp);
 
 app.use('/testers', testerRoutes);
 app.use('/responses', responseRoutes);
+app.use('/initialize', initializationRoutes);
 
 Sentry.setupExpressErrorHandler(app);
 

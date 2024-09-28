@@ -1,25 +1,25 @@
 import { getDb } from '../helpers/db.helpers.js';
 
 export type Response = {
-  tester_id: number;
-  question_id: number;
-  question_type: 'read' | 'read_check_1' | 'read_check_2' | 'read_check_3' | 'pick';
-  is_correct: boolean;
-  time_ms: number;
-  font_id: number;
+  testerId: number;
+  fontIndex: number;
+  contentIndex: number;
+  taskType: 'selection' | 'reading';
+  isCorrect: boolean;
+  timeMs: number;
 }
 
 export const addResponse = async (response: Response) => {
   const db = getDb();
 
   return new Promise<number>(function(resolve, reject) {
-    db.run('INSERT INTO responses (tester_id, question_id, question_type, is_correct, time_ms, font_id) VALUES (?, ?, ?, ?, ?, ?)', [
-      response.tester_id,
-      response.question_id,
-      response.question_type,
-      response.is_correct,
-      response.time_ms,
-      response.font_id
+    db.run('INSERT INTO responses (tester_id, contentIndex, taskType, isCorrect, timeMs, fontIndex) VALUES (?, ?, ?, ?, ?, ?)', [
+      response.testerId,
+      response.contentIndex,
+      response.taskType,
+      response.isCorrect,
+      response.timeMs,
+      response.fontIndex,
     ], function(err) {
       if (err) reject(err);
 
@@ -38,4 +38,4 @@ export const deleteResponse = async (responseId: number) => {
       resolve();
     });
   });
-}
+};

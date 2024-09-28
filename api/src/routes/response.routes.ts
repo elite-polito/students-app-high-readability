@@ -1,17 +1,17 @@
 import { Router } from 'express';
 import { check, validationResult } from 'express-validator';
 import { addResponse, deleteResponse, Response } from '../queries/response.queries.js';
-import { getTester, updateNextQuestion } from '../queries/tester.queries.js';
+import { getTester, updateNextTask } from '../queries/tester.queries.js';
 
 const router = Router();
 
 const responseValidation = [
-  check('tester_id').isNumeric(),
-  check('question_id').isNumeric(), // TODO add validation for max id
-  check('question_type').isString().isIn(['read', 'read_check_1', 'read_check_2', 'read_check_3', 'pick']),
-  check('is_correct').isBoolean(),
-  check('time_ms').isNumeric(),
-  check('font_id').isNumeric()
+  check('testerId').isNumeric(),
+  check('contentIndex').isNumeric(),
+  check('taskType').isString().isIn(['reading', 'selection']),
+  check('isCorrect').isBoolean(),
+  check('timeMs').isNumeric(),
+  check('fontId').isNumeric()
 ];
 
 type Request = {
@@ -27,27 +27,25 @@ router.post('', responseValidation, async (req: Request, res: any) => {
   }
 
   try {
-    const tester = await getTester(req.body.tester_id);
+    const tester = await getTester(req.body.testerId);
 
-    if(req.body.question_id !== tester.next_question) {
+    let responseQuestionIndex = null;
+
+    for (const [index, task] of tester.tasks.entries()) {
+      if (task.contentIndex === req.body.contentIndex) {
+        responseQuestionIndex = index;
+        break;
+      }
+    }
+
+    if(responseQuestionIndex !== tester.nextTask) {
       return res.status(400).json({ error: 'Invalid question' });
     }
 
-    let nextQuestion: number|null = null;
-    let pickNext = false;
-    for (const question of tester.questions) {
-      if (pickNext) {
-        nextQuestion = question.id;
-        break;
-      }
-
-      if (question.id === tester.next_question) {
-        pickNext = true;
-      }
-    }
+    const nextQuestion = tester.nextTask + 1;
 
     addResponse(req.body).then((newResponseId) => {
-      updateNextQuestion(req.body.tester_id, nextQuestion).then(() => {
+      updateNextTask(req.body.testerId, nextQuestion).then(() => {
         res.json({ nextQuestion });
       }).catch(async () => {
         await deleteResponse(newResponseId);

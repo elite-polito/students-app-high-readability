@@ -8,7 +8,7 @@ export const routingInstrumentation =
 
 export const initSentry = () => {
   Sentry.init({
-    dsn: 'https://0b3fe6c2fc0bd91481a14b1ad5c6b00d@sentry.k8s.polito.it/3',
+    dsn: 'https://89d16f0797721869f2f24fa5725b1999@sentry.k8s.polito.it/10',
     enabled: isEnvProduction,
     enableNative: true,
     integrations: [

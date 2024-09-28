@@ -5,7 +5,7 @@ import dotenv from "dotenv";
 dotenv.config();
 
 Sentry.init({
-    dsn: "https://3d94f5b023cf08ba55a8725d91073aa4@sentry.k8s.polito.it/9",
+    dsn: "https://2ad97acfc92d0beef8b1fbf6e7e2eeee@sentry.k8s.polito.it/11",
     integrations: [
         nodeProfilingIntegration(),
     ],

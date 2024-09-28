@@ -7,6 +7,7 @@ import { FeedbackProvider } from './core/providers/FeedbackProvider';
 import { PreferencesProvider } from './core/providers/PreferencesProvider';
 import { UiProvider } from './core/providers/UiProvider';
 import { initSentry } from './utils/sentry';
+import { ApiProvider } from './core/providers/ApiProvider';
 
 initSentry();
 
@@ -17,7 +18,9 @@ export const App = () => {
         <PreferencesProvider>
           <UiProvider>
             <FeedbackProvider>
-              <AppContent />
+              <ApiProvider>
+                <AppContent />
+              </ApiProvider>
             </FeedbackProvider>
           </UiProvider>
         </PreferencesProvider>
