@@ -11,7 +11,7 @@ const responseValidation = [
   check('taskType').isString().isIn(['reading', 'selection']),
   check('isCorrect').isBoolean(),
   check('timeMs').isNumeric(),
-  check('fontId').isNumeric()
+  check('fontIndex').isNumeric()
 ];
 
 type Request = {
