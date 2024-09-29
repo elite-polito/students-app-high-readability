@@ -34,15 +34,16 @@ router.post('/testers', (req, res) => {
 
   const latinSquare = generateBalancedLatinSquare(6);
 
-  // For each participant
+// For each participant
   for (let participant = 0; participant < testersCount; participant++) {
     let assignedTasks: TaskRef[] = [];
+    const assignedContentIndices = { reading: new Set(), selection: new Set() }; // Track assigned content indices
 
     // Get the balanced font order for this participant
     const fontOrder = latinSquare[participant % 6].slice(0, 4);
 
     // Assign tasks for each font
-    fontOrder.forEach((fontIndex, _) => {
+    fontOrder.forEach((fontIndex) => {
       const taskTypes = ['reading', 'selection', 'selection'];
       const randomizedTaskTypes = shuffleArray(taskTypes); // Randomize task order for this font
 
@@ -50,11 +51,17 @@ router.post('/testers', (req, res) => {
       for (let i = 0; i < randomizedTaskTypes.length; i++) {
         const taskType = randomizedTaskTypes[i];
 
-        let contentIndex = 0;
+        let contentIndex;
         if (taskType === 'reading') {
-          contentIndex = getRandomInt(0, storiesCount - 1);
+          do {
+            contentIndex = getRandomInt(0, storiesCount - 1);
+          } while (assignedContentIndices.reading.has(contentIndex));
+          assignedContentIndices.reading.add(contentIndex);
         } else {
-          contentIndex = getRandomInt(0, questionsCount - 1);
+          do {
+            contentIndex = getRandomInt(0, questionsCount - 1);
+          } while (assignedContentIndices.selection.has(contentIndex));
+          assignedContentIndices.selection.add(contentIndex);
         }
 
         assignedTasks.push({
