@@ -739,5 +739,18 @@
   },
   "videoPlayer": {
     "speedSectionTitle": "Velocità"
+  },
+  "selectionTaskQuestion": "Quale di questi corsi è insegnato qui al Politecnico?",
+  "fontReadability": {
+    "welcome": "Benvenut*",
+    "intro": "Per favore, firma il modulo di consenso se non lo hai ancora fatto e inserisci il numero del tester qui sotto.",
+    "thankYou": "Grazie!",
+    "support": "Grazie per aver partecipato a questo studio di usabilità. Il tuo contributo è per noi di inestimabile valore!",
+    "results": "Riceverai i risultati dello studio dall'ufficio Special Needs non appena saranno pronti.",
+    "finish": "Fine",
+    "testerNumber": "Numero del tester",
+    "next": "Avanti",
+    "whatToExpect": "Cosa aspettarsi",
+    "whatToExpectText": "In questo studio, ti verrà chiesto di leggere alcune storie e rispondere a delle domande a risposta chiusa rappresentate con diversi font. L'obiettivo è capire quale font è il più leggibile per te."
   }
 }

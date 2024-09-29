@@ -19,7 +19,7 @@ import { lightTheme } from '../themes/light';
 
 i18n.use(initReactI18next).init({
   compatibilityJSON: 'v3',
-  fallbackLng: 'en',
+  fallbackLng: 'it',
   resources: {
     en: {
       translation: en,
@@ -53,11 +53,6 @@ export const UiProvider = ({ children }: PropsWithChildren) => {
   }, [colorScheme, theme, safeAreaInsets]);
 
   const navigationTheme = useMemo(() => fromUiTheme(uiTheme), [uiTheme]);
-
-  useEffect(() => {
-    i18n.changeLanguage(language);
-    Settings.defaultLocale = language;
-  }, [language]);
 
   return (
     <ThemeContext.Provider value={uiTheme}>

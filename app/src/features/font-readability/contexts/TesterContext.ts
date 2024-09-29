@@ -5,6 +5,8 @@ import { Feedback } from '@lib/ui/types/Feedback';
 type TesterContextProps = {
   testerId?: number;
   setTesterId: (id: number) => void;
+  language: string;
+  setLanguage: (language: string) => void;
 };
 
 export const TesterContext = createContext<TesterContextProps | undefined>(

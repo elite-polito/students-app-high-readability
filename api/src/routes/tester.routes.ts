@@ -7,7 +7,6 @@ const router = Router();
 router.get('/:id(\\d+)', async (req, res) => {
 
   try {
-    console.log(req.params.id);
     const tester = await getTester(Number(req.params.id));
     res.json(tester);
   } catch (e) {

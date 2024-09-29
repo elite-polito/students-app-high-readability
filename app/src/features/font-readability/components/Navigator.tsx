@@ -5,7 +5,6 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import { HeaderLogo } from '../../../core/components/HeaderLogo';
 import { IntroScreen } from '../screens/IntroScreen';
-import { MidtimeScreen } from '../screens/MidtimeScreen';
 import { StartScreen } from '../screens/StartScreen';
 import { EndScreen } from '../screens/EndScreen';
 import { TaskScreen } from '../screens/TaskScreen';
@@ -14,7 +13,6 @@ export type StackParamList = {
   Intro: undefined;
   Start: undefined;
   Task: { taskIndex: number };
-  Midtime: undefined;
   End: undefined;
 };
 
@@ -36,7 +34,6 @@ export const Navigator = () => {
       <Stack.Screen name="Intro" component={IntroScreen} />
       <Stack.Screen name="Start" component={StartScreen} />
       <Stack.Screen name="Task" component={TaskScreen} />
-      <Stack.Screen name="Midtime" component={MidtimeScreen} />
       <Stack.Screen name="End" component={EndScreen} />
 
     </Stack.Navigator>

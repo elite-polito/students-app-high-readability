@@ -739,5 +739,18 @@
   },
   "videoPlayer": {
     "speedSectionTitle": "Speed"
+  },
+  "selectionTaskQuestion": "Which of these courses is taught here at the Polytechnic?",
+  "fontReadability": {
+    "welcome": "Welcome",
+    "intro": "Please sign the consent form if you haven't yet, and insert the tester number below.",
+    "thankYou": "Thank you!",
+    "support": "Thank you for participating in this usability study. Your input is invaluable to us!",
+    "results": "You will receive the results of the study once they are ready from the Special Needs office.",
+    "finish": "Finish",
+    "testerNumber": "Tester number",
+    "next": "Next",
+    "whatToExpect": "What to expect",
+    "whatToExpectText": "In this study, you will be asked to read some stories and answer some closed-ended questions in different fonts. The goal is to understand which font is the most readable for you."
   }
 }

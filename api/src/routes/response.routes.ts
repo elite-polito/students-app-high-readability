@@ -32,7 +32,7 @@ router.post('', responseValidation, async (req: Request, res: any) => {
     let responseQuestionIndex = null;
 
     for (const [index, task] of tester.tasks.entries()) {
-      if (task.contentIndex === req.body.contentIndex) {
+      if (task.contentIndex === req.body.contentIndex && task.taskType === req.body.taskType && task.fontIndex === req.body.fontIndex) {
         responseQuestionIndex = index;
         break;
       }

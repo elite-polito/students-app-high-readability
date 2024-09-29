@@ -57,6 +57,11 @@ public class MainApplication extends Application implements ReactApplication {
     super.onCreate();
     SoLoader.init(this, /* native exopackage */ false);
     ReactFontManager.getInstance().addCustomFont(this, "Montserrat", R.font.montserrat);
+    ReactFontManager.getInstance().addCustomFont(this, "Open Dyslexic", R.font.open_dyslexic);
+    ReactFontManager.getInstance().addCustomFont(this, "Dyslexie", R.font.dyslexie);
+    ReactFontManager.getInstance().addCustomFont(this, "Sylexiad", R.font.sylexiad);
+    ReactFontManager.getInstance().addCustomFont(this, "Arial", R.font.arial);
+    ReactFontManager.getInstance().addCustomFont(this, "Century Gothic", R.font.century_gothic);
 
     if (BuildConfig.IS_NEW_ARCHITECTURE_ENABLED) {
       // If you opted-in for the New Architecture, we load the native entry point for this app.

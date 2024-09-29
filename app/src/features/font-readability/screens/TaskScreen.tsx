@@ -1,19 +1,21 @@
 import { StackParamList } from '../components/Navigator';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { useGetTask } from '../queries/tester.queries';
+import { StoryScreenContent } from '../components/StoryScreenContent';
+import { SelectionScreenContent } from '../components/SelectionScreenContent';
 
 type Props = NativeStackScreenProps<StackParamList, 'Task'>;
 
-export const TaskScreen = ({navigation, route}: Props) => {
-  const { taskIndex } = route.params;
+export const TaskScreen = (props: Props) => {
+  const { taskIndex } = props.route.params;
   const task = useGetTask(taskIndex);
 
-  if(!task) return null;
+  if (!task) return null;
 
-  if(task.taskType === 'reading') {
-    return <TextTask task={task} />;
+  if (task.taskType === 'reading') {
+    return <StoryScreenContent taskRef={task}  {...props} />;
   } else {
-    return <SelectionTask task={task
+    return <SelectionScreenContent taskRef={task} {...props} />;
   }
 
-}
+};

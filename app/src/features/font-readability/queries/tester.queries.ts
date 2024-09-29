@@ -1,15 +1,16 @@
 import { useQuery } from '@tanstack/react-query';
-import axios from 'axios';
 import { Tester } from '../types/tester';
 import { useTesterContext } from '../contexts/TesterContext';
 import { useMemo } from 'react';
+import { getRoute } from '../helpers/axios';
 
 export const useGetTester = (id?: number) => {
 
-  return useQuery<Tester>(['tester'], () => axios.get('http://localhost:3001' + '/testers/' + id), {
+  return useQuery<Tester>(['tester'], () => getRoute('/testers/' + id), {
     enabled: id !== undefined,
-    cacheTime: 0,
-    staleTime: 0,
+    cacheTime: Infinity,
+    staleTime: Infinity,
+    refetchOnWindowFocus: false,
   });
 };
 export const useGetTask = (id: number) => {

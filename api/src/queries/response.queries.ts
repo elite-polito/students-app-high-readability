@@ -13,7 +13,7 @@ export const addResponse = async (response: Response) => {
   const db = getDb();
 
   return new Promise<number>(function(resolve, reject) {
-    db.run('INSERT INTO responses (tester_id, contentIndex, taskType, isCorrect, timeMs, fontIndex) VALUES (?, ?, ?, ?, ?, ?)', [
+    db.run('INSERT INTO responses (testerId, contentIndex, taskType, isCorrect, timeMs, fontIndex) VALUES (?, ?, ?, ?, ?, ?)', [
       response.testerId,
       response.contentIndex,
       response.taskType,
