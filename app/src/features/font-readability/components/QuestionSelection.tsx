@@ -9,10 +9,11 @@ import { Theme } from '@lib/ui/types/Theme';
 type Props = {
   question: Question;
   onSelect: (option: string) => void;
+  isLoading?: boolean;
   fontStyle?: TextStyle;
 }
 
-export const QuestionSelection = ({ question, onSelect, fontStyle }: Props) => {
+export const QuestionSelection = ({ question, onSelect, isLoading, fontStyle }: Props) => {
   const styles = useStylesheet(createStyles);
 
   const options = useMemo(() => {
@@ -34,6 +35,7 @@ export const QuestionSelection = ({ question, onSelect, fontStyle }: Props) => {
             style={[
               styles.optionButton,
             ]}
+            disabled={isLoading}
             onPress={() => onSelect(option)}
           >
             <Text style={fontStyle}>{option}</Text>

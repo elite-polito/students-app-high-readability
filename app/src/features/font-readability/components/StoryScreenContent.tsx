@@ -55,7 +55,7 @@ export const StoryScreenContent = ({ navigation, taskRef, route }: Props) => {
   return  readingComplete ?
       <QuestionSelection
         question={{statement: story.question, options: story.options, correctOption: story.correctOption}}
-        onSelect={onSelect} fontStyle={fontStyle} />
+        onSelect={onSelect} fontStyle={fontStyle} isLoading={addResponse.isLoading} />
       : <ScrollView
     contentInsetAdjustmentBehavior="automatic"
     contentContainerStyle={{ flexGrow: 1 }}

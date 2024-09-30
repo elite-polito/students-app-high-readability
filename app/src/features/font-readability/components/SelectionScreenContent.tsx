@@ -41,5 +41,5 @@ export const SelectionScreenContent = ({ navigation, taskRef, route }: Props) =>
     });
   };
 
-  return <QuestionSelection question={question} onSelect={onSelect} fontStyle={fontStyle} />;
+  return <QuestionSelection question={question} onSelect={onSelect} fontStyle={fontStyle} isLoading={addResponse.isLoading} />;
 };
