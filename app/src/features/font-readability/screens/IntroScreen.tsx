@@ -39,6 +39,7 @@ export const IntroScreen = ({ navigation }: Props) => {
     <ScrollView
       contentInsetAdjustmentBehavior="automatic"
       contentContainerStyle={{ flexGrow: 1 }}
+      keyboardShouldPersistTaps='handled'
     >
       <Col ph={5} pv={3} justify={'space-between'} style={{ flexGrow: 1 }}>
         <Col gap={3}>
