@@ -59,6 +59,7 @@ public class MainApplication extends Application implements ReactApplication {
     ReactFontManager.getInstance().addCustomFont(this, "Montserrat", R.font.montserrat);
     ReactFontManager.getInstance().addCustomFont(this, "Open Dyslexic", R.font.open_dyslexic);
     ReactFontManager.getInstance().addCustomFont(this, "Dyslexie", R.font.dyslexie);
+    ReactFontManager.getInstance().addCustomFont(this, "Lexie", R.font.lexie);
     ReactFontManager.getInstance().addCustomFont(this, "Sylexiad", R.font.sylexiad);
     ReactFontManager.getInstance().addCustomFont(this, "Arial", R.font.arial);
     ReactFontManager.getInstance().addCustomFont(this, "Century Gothic", R.font.century_gothic);

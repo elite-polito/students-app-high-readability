@@ -2,7 +2,7 @@ export const getFontStyles = (fontIndex: number) => {
   switch (fontIndex) {
     case 0:
       return {
-        fontFamily: 'Dyslexie',
+        fontFamily: 'Lexie',
       };
     case 1:
       return {
